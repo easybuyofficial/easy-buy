@@ -1,0 +1,566 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyBuy - Online Shopping</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #222;
+}
+
+header {
+    background: #14213d;
+    color: white;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fca311;
+}
+
+header input {
+    width: 40%;
+    min-width: 180px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.cart-button {
+    background: #fca311;
+    color: #14213d;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav {
+    background: #ffffff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px #ddd;
+}
+
+nav a {
+    text-decoration: none;
+    color: #14213d;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.hero {
+    background: linear-gradient(120deg, #14213d, #315b96);
+    color: white;
+    padding: 75px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.hero button {
+    background: #fca311;
+    border: none;
+    padding: 14px 25px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hero-art {
+    font-size: 110px;
+}
+
+.section {
+    padding: 45px 6%;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #14213d;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 18px;
+}
+
+.category {
+    background: white;
+    padding: 25px 10px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px #e2e2e2;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    background: #fff4df;
+}
+
+.category div {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 22px;
+}
+
+.product {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 3px 12px #e1e1e1;
+    transition: 0.2s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 20px #d5d5d5;
+}
+
+.product-image {
+    height: 150px;
+    background: #f0f3f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.product p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #16834a;
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.product button {
+    width: 100%;
+    padding: 11px;
+    background: #14213d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.product button:hover {
+    background: #fca311;
+    color: #14213d;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.feature {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 12px #e5e5e5;
+}
+
+.feature div {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.feature h3 {
+    margin-bottom: 10px;
+}
+
+.about {
+    background: white;
+    line-height: 1.8;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+}
+
+footer {
+    background: #14213d;
+    color: white;
+    padding: 35px 6%;
+    text-align: center;
+    line-height: 2;
+}
+
+footer a {
+    color: #fca311;
+    text-decoration: none;
+}
+
+#cartPanel {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    max-width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: white;
+    box-shadow: -5px 0 20px #999;
+    padding: 25px;
+    z-index: 1000;
+}
+
+#cartPanel h2 {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    line-height: 1.8;
+}
+
+.cart-item button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.close-button {
+    float: right;
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.checkout-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px;
+    border: none;
+    background: #16834a;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.empty {
+    color: #666;
+    margin: 20px 0;
+}
+
+#checkoutForm {
+    display: none;
+    margin-top: 20px;
+}
+
+#checkoutForm input,
+#checkoutForm textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#checkoutForm button {
+    width: 100%;
+    padding: 12px;
+    background: #16834a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#notice {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #14213d;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 8px;
+    display: none;
+    z-index: 2000;
+}
+
+@media (max-width: 650px) {
+    header {
+        justify-content: center;
+    }
+
+    header input {
+        width: 100%;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 8px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-art {
+        font-size: 75px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">EasyBuy 🛍️</div>
+
+    <input
+        type="text"
+        id="search"
+        placeholder="Search products..."
+        oninput="renderProducts()"
+    >
+
+    <button class="cart-button" onclick="openCart()">
+        🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#products">Products</a>
+    <a href="#services">Our Services</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero" id="home">
+    <div>
+        <h1>Welcome to EasyBuy!</h1>
+        <p>
+            Your favourite online shopping destination.<br>
+            Discover amazing products at amazing prices.<br>
+            Shop smart. Shop easy. Shop EasyBuy!
+        </p>
+        <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+            Start Shopping →
+        </button>
+    </div>
+
+    <div class="hero-art">🛍️ 📦 🎁</div>
+</section>
+
+<section class="section" id="categories">
+    <h2>Shop by Category</h2>
+
+    <div class="categories">
+        <div class="category" onclick="selectCategory('Electronics')">
+            <div>📱</div>
+            <h3>Electronics</h3>
+        </div>
+
+        <div class="category" onclick="selectCategory('Fashion')">
+            <div>👕</div>
+            <h3>Fashion</h3>
+        </div>
+
+        <div class="category" onclick="selectCategory('Footwear')">
+            <div>👟</div>
+            <h3>Footwear</h3>
+        </div>
+
+        <div class="category" onclick="selectCategory('Home')">
+            <div>🏠</div>
+            <h3>Home & Living</h3>
+        </div>
+
+        <div class="category" onclick="selectCategory('Accessories')">
+            <div>⌚</div>
+            <h3>Accessories</h3>
+        </div>
+
+        <div class="category" onclick="selectCategory('all')">
+            <div>🛒</div>
+            <h3>All Products</h3>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="products">
+    <h2>Featured Products</h2>
+
+    <div class="products" id="productList"></div>
+</section>
+
+<section class="section" id="services">
+    <h2>Why Choose EasyBuy?</h2>
+
+    <div class="features">
+        <div class="feature">
+            <div>🚚</div>
+            <h3>Fast Delivery</h3>
+            <p>Convenient delivery to your doorstep.</p>
+        </div>
+
+        <div class="feature">
+            <div>🔒</div>
+            <h3>Safe Shopping</h3>
+            <p>We value your shopping experience and privacy.</p>
+        </div>
+
+        <div class="feature">
+            <div>💰</div>
+            <h3>Great Prices</h3>
+            <p>Explore products at attractive prices.</p>
+        </div>
+
+        <div class="feature">
+            <div>🎧</div>
+            <h3>Customer Support</h3>
+            <p>We are here to help with your questions.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <h2>About EasyBuy</h2>
+
+    <div class="about">
+        <p>
+            EasyBuy is an online shopping website created to make shopping
+            simple, convenient and enjoyable. Customers can explore different
+            product categories, search for products, add products to their cart
+            and review their order before checkout.
+        </p>
+
+        <p>
+            Our goal is to provide a user-friendly shopping experience with
+            an attractive design and easy navigation.
+        </p>
+
+        <p><strong>EasyBuy — Your Shopping, Made Easy!</strong></p>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <h2>Contact Us</h2>
+
+    <div class="about">
+        <p>📧 Email: support@easybuy.example</p>
+        <p>📞 Phone: +91 90000 00000</p>
+        <p>🕒 Support Hours: Monday to Saturday, 9 AM to 6 PM</p>
+        <p>For this demo, the contact details are sample information.</p>
+    </div>
+</section>
+
+<footer>
+    <h2>EasyBuy 🛍️</h2>
+    <p>Your Shopping, Made Easy!</p>
+    <p>
+        <a href="#home">Home</a> |
+        <a href="#products">Products</a> |
+        <a href="#about">About Us</a> |
+        <a href="#contact">Contact</a>
+    </p>
+    <p>© 2026 EasyBuy. Student Project Demo.</p>
+</footer>
+
+<div id="cartPanel">
+    <button class="close-button" onclick="closeCart()">Close ✕</button>
+
+    <h2>🛒 Your Shopping Cart</h2>
+
+    <div id="cartItems"></div>
+
+    <hr>
+
+    <p>Subtotal: ₹<span id="subtotal">0</span></p>
+    <p>Delivery: ₹<span id="delivery">0</span></p>
+    <h3>Total: ₹<span id="total">0</span></h3>
+
+    <button class="checkout-button" onclick="showCheckout()">
+        Proceed to Checkout
+    </button>
+
+    <form id="checkoutForm" onsubmit="placeOrder(event)">
+        <h3>Customer Details</h3>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Full Name"
+            required
+        >
+
+        <input
+            type="email"
+            id="customerEmail"
+            placeholder="Email Address"
+            required
+        >
+
+        <input
+            type="tel"
+            id="customerPh
+```
